@@ -1,16 +1,18 @@
 package com.java.chatbot.controller;
 
+import com.java.chatbot.model.Chat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
+import org.springframework.messaging.support.GenericMessage;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
-import com.java.chatbot.model.Chat;
+import java.util.*;
 
 
 @Component
@@ -24,10 +26,10 @@ public class WebSocketEventListener {
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
         logger.info("Received a new web socket connection");
-       /* StompHeaderAccessor sha = StompHeaderAccessor.wrap(event.getMessage());
+        StompHeaderAccessor sha = StompHeaderAccessor.wrap(event.getMessage());
         String actualAuthHeader =
                 ((List) ((Map) ((GenericMessage) sha.getHeader("simpConnectMessage")).getHeaders()
-                        .get("nativeHeaders")).get("userId")).get(0).toString();*/
+                        .get("nativeHeaders")).get("userId")).get(0).toString();
     }
 
     @EventListener
